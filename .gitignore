@@ -1,0 +1,7 @@
+.uranium/
+pip-selfcheck.json
+bin/
+include/
+lib/
+local/
+*.pyc
