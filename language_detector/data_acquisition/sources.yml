@@ -1,0 +1,11 @@
+english:
+    users:
+        - cnn
+    playlists:
+        ellen-show: https://www.youtube.com/watch?v=7Cn0-CwintU&list=PLuW4g7xujBWcPYTiWNfxomBX1-YFiSG5r
+
+chinese:
+    users:
+        - cctvch
+    playlists:
+        glory-of-china: https://www.youtube.com/watch?v=JNK_tJsuN60&list=PL0eGJygpmOH6a4MrH3P3C10kyT5Iny4n-

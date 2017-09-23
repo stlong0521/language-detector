@@ -4,4 +4,7 @@ bin/
 include/
 lib/
 local/
+etc/
+share/
 *.pyc
+data/
