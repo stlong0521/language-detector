@@ -8,3 +8,4 @@ etc/
 share/
 *.pyc
 data/
+language_detector/preprocessing/eggs.zip

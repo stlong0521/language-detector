@@ -11,4 +11,8 @@ def download_raw_data(build):
 
 def preprocessing(build):
     os.environ['SPARK_HOME'] = '/usr/local/share/spark/spark-2.0.2'
-    build.executables.run(["./language_detector/preprocessing/run_preprocessing_spark_job.sh"])
+    build.executables.run(["sh", "-c", "cd language_detector/preprocessing/ && zip -r eggs.zip eggs/ -x *.pyc"])
+    build.packages.install("scipy", version="==0.19.1")
+    build.executables.run([
+        "./language_detector/preprocessing/run_preprocessing_spark_job.sh",
+        "--input-path=data/raw", "--output-path=data/rst"])
