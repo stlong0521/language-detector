@@ -8,4 +8,5 @@ etc/
 share/
 *.pyc
 data/
-language_detector/preprocessing/eggs.zip
+language_detector/preprocessing/dist/
+language_detector/preprocessing/ilid_preprocessing.egg-info/
