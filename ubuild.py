@@ -16,5 +16,9 @@ def preprocessing(build):
     build.packages.install("python-speech-features", version="==0.6")
     build.executables.run([
         "./language_detector/preprocessing/run.sh",
-        "--input-path", os.path.join(os.getcwd(), "data/raw/english/cnn"),
-        "--output-path", os.path.join(os.getcwd(), "data/rst")])
+        "--input-path", os.path.join(os.getcwd(), "data/raw/english"),
+        "--output-path", os.path.join(os.getcwd(), "data/rst/english")])
+    build.executables.run([
+        "./language_detector/preprocessing/run.sh",
+        "--input-path", os.path.join(os.getcwd(), "data/raw/chinese"),
+        "--output-path", os.path.join(os.getcwd(), "data/rst/chinese")])

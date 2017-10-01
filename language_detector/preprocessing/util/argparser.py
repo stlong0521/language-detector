@@ -14,7 +14,7 @@ def parse():
 def _validate(args):
   # Input args validation
   if not os.path.exists(args.output_path):
-      os.mkdir(args.output_path)
+      os.makedirs(args.output_path)
 
   if not os.path.isdir(args.output_path):
       sys.exit("Output path is not a directory.")
