@@ -12,8 +12,9 @@ def read_wav_dirty(f):
 
 def read_wav(f):
   samplerate, signal = wav.read(f)
-  #if len(signal.shape) > 1:
-  #  signal = signal[:,0]
+  # Use left channel only for stereo audios
+  if len(signal.shape) > 1:
+    signal = signal[:,0]
   f = filename.truncate_extension(filename.clean(f))
   return (f, signal, samplerate)
 
