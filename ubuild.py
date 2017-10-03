@@ -22,3 +22,10 @@ def preprocessing(build):
         "./language_detector/preprocessing/run.sh",
         "--input-path", os.path.join(os.getcwd(), "data/raw/chinese"),
         "--output-path", os.path.join(os.getcwd(), "data/rst/chinese")])
+
+def run_model(build):
+    build.packages.install("tensorflow", version="==1.3.0")
+    import tensorflow as tf
+    hello = tf.constant('Hello, TensorFlow!')
+    sess = tf.Session()
+    print(sess.run(hello))
