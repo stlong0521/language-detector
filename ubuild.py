@@ -29,7 +29,6 @@ def preprocessing(build):
 
 def run_model(build):
     build.packages.install("tensorflow", version="==1.3.0")
-    import tensorflow as tf
-    hello = tf.constant('Hello, TensorFlow!')
-    sess = tf.Session()
-    print(sess.run(hello))
+    build.executables.run([
+        sys.executable, "language_detector/modeling/train.py",
+        "--config", "language_detector/modeling/config.yaml"])
