@@ -54,14 +54,14 @@ class Network(object):
 
     def set_activation_summary(self):
         '''Log each layers activations and sparsity.'''
-        tf.image_summary("input images", self.input_layer.output, max_images=100)
+        tf.summary.image("input images", self.input_layer.output, max_outputs=100)
 
         for var in tf.trainable_variables():
-            tf.histogram_summary(var.op.name, var)
+            tf.summary.histogram(var.op.name, var)
 
         for layer in self.hidden_layers:
-            tf.histogram_summary(layer.name + '/activations', layer.output)
-            tf.scalar_summary(layer.name + '/sparsity', tf.nn.zero_fraction(layer.output))
+            tf.summary.histogram(layer.name + '/activations', layer.output)
+            tf.summary.scalar(layer.name + '/sparsity', tf.nn.zero_fraction(layer.output))
 
 
     def set_training_input(self, training_set, test_set):
@@ -72,25 +72,25 @@ class Network(object):
         assert([training_set.num_labels] == self.output_shape)
 
     def set_cost(self, logits_cost_function = tf.nn.softmax_cross_entropy_with_logits):
-        cross_entropy_mean = tf.reduce_mean(logits_cost_function(self.layers.output, self.y))
+        cross_entropy_mean = tf.reduce_mean(logits_cost_function(logits=self.layers.output, labels=self.y))
         tf.add_to_collection('losses', cross_entropy_mean)
 
         # The total loss is defined as the cross entropy loss plus all of the weight
         # decay terms (L2 loss).
         self.cost = tf.add_n(tf.get_collection('losses'), name='total_loss')
-        tf.scalar_summary("loss", self.cost)
+        tf.summary.scalar("loss", self.cost)
 
 
     def set_optimizer(self, learning_rate, decay_steps, optimizer = tf.train.AdamOptimizer):
         global_step = tf.Variable(0, trainable=False)
         lr = tf.train.exponential_decay(learning_rate, global_step, decay_steps, 0.1, staircase=True)
-        tf.scalar_summary("learning_rate", lr)
+        tf.summary.scalar("learning_rate", lr)
         self.optimizer = optimizer(learning_rate=lr).minimize(self.cost, global_step = global_step)
 
     def set_accuracy(self):
         correct_pred = tf.equal(tf.argmax(self.layers.output, 1), tf.argmax(self.y, 1))
         self.accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
-        tf.scalar_summary("accuracy", self.accuracy)
+        tf.summary.scalar("accuracy", self.accuracy)
 
     def make_path(self, path):
         if not os.path.isdir(path):
@@ -123,12 +123,12 @@ class Network(object):
     def train(self, batch_size, iterations, display_step = 100):
         self.set_activation_summary()
 
-        init = tf.initialize_all_variables()
-        self.merged_summary_op = tf.merge_all_summaries()
+        init = tf.global_variables_initializer()
+        self.merged_summary_op = tf.summary.merge_all()
 
         with tf.Session() as sess:
             self.saver = tf.train.Saver()
-            self.summary_writer = tf.train.SummaryWriter(self.log_path, sess.graph_def)
+            self.summary_writer = tf.summary.FileWriter(self.log_path, sess.graph)
             sess.run(init)
             self.optimize(sess, batch_size, iterations, display_step)
             return self.evaluate(sess, batch_size)

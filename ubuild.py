@@ -27,8 +27,9 @@ def preprocessing(build):
         "--input-path", os.path.join(os.getcwd(), "data/rst"),
         "--output-path", os.path.join(os.getcwd(), "data/labelled")])
 
-def run_model(build):
+def train_model(build):
     build.packages.install("tensorflow", version="==1.3.0")
+    build.packages.install("pillow", version="==4.3.0")
     build.executables.run([
         sys.executable, "language_detector/modeling/train.py",
         "--config", "language_detector/modeling/config.yaml"])

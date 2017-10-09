@@ -8,5 +8,7 @@ etc/
 share/
 *.pyc
 data/
+logs/
+snapshots/
 language_detector/preprocessing/dist/
 language_detector/preprocessing/ilid_preprocessing.egg-info/
