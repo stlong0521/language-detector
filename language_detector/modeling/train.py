@@ -15,7 +15,7 @@ network_generator = getattr(importlib.import_module(network_module), "generate")
 
 net = network_generator(config["INPUT_SHAPE"], config["OUTPUT_SHAPE"][0])
 
-training_set = networkinput.CSVInput(config["TRAINING_DATA"], config["INPUT_SHAPE"], config["OUTPUT_SHAPE"][0], mode="L")
+training_set = networkinput.CSVInput(config["TRAINING_DATA"], config["INPUT_SHAPE"], config["OUTPUT_SHAPE"][0], mode="L", shuffle=config["SHUFFLE"])
 test_set = networkinput.CSVInput(config["TEST_DATA"], config["INPUT_SHAPE"], config["OUTPUT_SHAPE"][0], mode="L")
 
 net.set_training_input(training_set, test_set)

@@ -11,7 +11,7 @@ def download(language, source, source_name, source_type):
     else:
         print "downloading {0} {1}".format(source_type, source_name)
         command = """
-                youtube-dl -i --max-downloads 5 \
+                youtube-dl -i --max-downloads 500 \
                 --extract-audio --audio-format wav \
                 "{0}" -o "{1}/%(title)s.%(ext)s"
             """.format(source, output_path)
@@ -29,7 +29,7 @@ if __name__ == '__main__':
     with open(source_file_path, "r") as f:
         sources = yaml.load(f)
     for language, categories in sources.items():
-        for user in categories["users"]:
-            download_user(language, user)
+#        for user in categories["users"]:
+#            download_user(language, user)
         for playlist_name, playlist_id in categories["playlists"].items():
             download_playlist(language, playlist_name, playlist_id)

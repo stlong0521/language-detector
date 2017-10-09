@@ -1,11 +1,11 @@
-english:
-    users:
-        - cnn
-    playlists:
-        ellen-show: https://www.youtube.com/watch?v=7Cn0-CwintU&list=PLuW4g7xujBWcPYTiWNfxomBX1-YFiSG5r
-
 chinese:
-    users:
-        - cctvch
+#    users:
+#        - cctvch
     playlists:
-        glory-of-china: https://www.youtube.com/watch?v=JNK_tJsuN60&list=PL0eGJygpmOH6a4MrH3P3C10kyT5Iny4n-
+        luyu-official: https://www.youtube.com/watch?v=6GOTZa3xU2U&list=PL0qv-SqUbwqVVIabi_90Me4UeuKWs1Sbn
+
+english:
+#    users:
+#        - cnn
+    playlists:
+        ellen-show: https://www.youtube.com/watch?v=s0MbQWhyoD0&list=PLuW4g7xujBWeiOJ-C-pZCTdUMWucxeMNQ
