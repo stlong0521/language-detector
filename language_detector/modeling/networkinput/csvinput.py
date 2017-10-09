@@ -41,7 +41,7 @@ class CSVInput(NetworkInput):
         return self._read(start, batch_size, self.images, self.labels)
 
     def _read_random(self, start, batch_size):
-        if start == 0 or self.shuffled_images == None or self.shuffled_labels == None:
+        if start == 0 or self.shuffled_images is None or self.shuffled_labels is None:
             self.shuffled_images, self.shuffled_labels = self.get_shuffled_samples()
 
         return self._read(start, batch_size, self.shuffled_images, self.shuffled_labels)
@@ -68,7 +68,7 @@ class CSVInput(NetworkInput):
 
                 self.epochs_completed += 1
                 self.batch_start = 0
-                if accumulated_images != None:
+                if accumulated_images is not None:
                     return loop(next_epoch_batch_size,
                             np.append(accumulated_images, images, axis=0),
                             np.append(accumulated_labels, labels, axis=0))
@@ -78,7 +78,7 @@ class CSVInput(NetworkInput):
             else:
                 images, labels = self._read_images_and_labels(self.batch_start, batch_size)
                 self.batch_start += batch_size
-                if accumulated_images != None:
+                if accumulated_images is not None:
                     return np.append(accumulated_images, images, axis=0), np.append(accumulated_labels, labels, axis=0)
                 else:
                     return images, labels

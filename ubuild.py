@@ -33,3 +33,11 @@ def train_model(build):
     build.executables.run([
         sys.executable, "language_detector/modeling/train.py",
         "--config", "language_detector/modeling/config.yaml"])
+
+def evaluate_model(build):
+    build.packages.install("tensorflow", version="==1.3.0")
+    build.packages.install("pillow", version="==4.3.0")
+    build.executables.run([
+        sys.executable, "language_detector/modeling/evaluate.py",
+        "--config", "language_detector/modeling/config.yaml",
+        "--model", "snapshots/Berlin_2017-10-08T19-10-39/Berlin.tensormodel-100"])

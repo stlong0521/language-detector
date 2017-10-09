@@ -88,7 +88,7 @@ class Network(object):
         self.optimizer = optimizer(learning_rate=lr).minimize(self.cost, global_step = global_step)
 
     def set_accuracy(self):
-        correct_pred = tf.equal(tf.argmax(self.layers.output, 1), tf.argmax(self.y, 1))
+        correct_pred = tf.equal(tf.argmax(self.layers.output, axis=1), tf.argmax(self.y, axis=1))
         self.accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
         tf.summary.scalar("accuracy", self.accuracy)
 
@@ -112,7 +112,7 @@ class Network(object):
             pred = tf.nn.softmax(self.layers.output)
             saver = tf.train.Saver()
             saver.restore(sess, model_path)
-            label_op = tf.argmax(pred, dimension=1)
+            label_op = tf.argmax(pred, axis=1)
             prediction, label = sess.run([pred, label_op], feed_dict={self.x: images})
             print "Probabilities: ", prediction
             print "Label: ", label
@@ -163,7 +163,7 @@ class Network(object):
 
     def evaluate(self, sess, batch_size):
         #Precision
-        top_k_op = tf.nn.in_top_k(self.layers.output, tf.to_int32(tf.argmax(self.y, dimension=1)), 1)
+        top_k_op = tf.nn.in_top_k(self.layers.output, tf.to_int32(tf.argmax(self.y, axis=1)), 1)
         step = 0
         true_count = 0
         while step * batch_size < self.test_set.sample_size:
@@ -176,9 +176,9 @@ class Network(object):
 
         return precision
 
-    def load_and_evaluate(self, model_path):
+    def load_and_evaluate(self, model_path, batch_size):
         with tf.Session() as sess:
             saver = tf.train.Saver()
             saver.restore(sess, model_path)
-            self.evaluate(sess)
+            self.evaluate(sess, batch_size)
 
