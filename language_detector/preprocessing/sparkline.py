@@ -7,7 +7,7 @@ import scipy.signal
 from preprocessing_commons import sliding_audio, downsample, apply_melfilter, read_wav, generate_spectrograms
 
 def main(args):
-  window_size = 600
+  window_size = 120
   files = filecollector.collect(args.input_path)
 
   sc = SparkContext("local", "sparkline")

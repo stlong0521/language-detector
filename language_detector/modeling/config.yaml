@@ -1,13 +1,13 @@
 # Learning Parameters
 LEARNING_RATE : 0.0001
-LEARNING_DECAY_STEP : 50
+LEARNING_DECAY_STEP : 1000000
 BATCH_SIZE : 128
-TRAINING_ITERS : 100
+TRAINING_ITERS : 2000000
 DISPLAY_STEP : 10
 
 # Network Data Parameters
 NET : "berlinnet" # name of the Python file with the network specification
-INPUT_SHAPE : [39, 600, 1] # Input Image shape
+INPUT_SHAPE : [39, 120, 1] # Input Image shape
 OUTPUT_SHAPE : [2] # Total classes as vector
 
 # Datasets

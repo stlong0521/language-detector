@@ -28,7 +28,7 @@ def generate_spectrograms(f, signal, samplerate):
   return (f, Sxx)
 
 def sliding_audio(f, signal, samplerate):
-  for window_name, window in audio.windowing.sliding_with_filename(f, signal, samplerate, 5, 5, 0.6):
+  for window_name, window in audio.windowing.sliding_with_filename(f, signal, samplerate, 1, 1, 0.6):
     yield (window_name, window, samplerate)
 
 def downsample(f, signal, samplerate):
@@ -47,7 +47,7 @@ def wav_to_images(sound_file, output_path):
     "spectros" : [],
     "melfilter" : []
   }
-  window_size = 600 # MFCC sliding window
+  window_size = 120 # MFCC sliding window
 
   f, signal, samplerate = read_wav_dirty(sound_file)
   segments = sliding_audio(f, signal, samplerate)
