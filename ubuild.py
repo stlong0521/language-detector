@@ -37,7 +37,10 @@ def train_model(build):
 def evaluate_model(build):
     build.packages.install("tensorflow", version="==1.3.0")
     build.packages.install("pillow", version="==4.3.0")
+    build.packages.install("pyyaml", version="==3.12")
+    import yaml
+    checkpoint = yaml.load(file("snapshots/Berlin_2017-10-10T00-00-56/checkpoint"))
     build.executables.run([
         sys.executable, "language_detector/modeling/evaluate.py",
         "--config", "language_detector/modeling/config.yaml",
-        "--model", "snapshots/Berlin_2017-10-08T19-10-39/Berlin.tensormodel-100"])
+        "--model", checkpoint['model_checkpoint_path']])
