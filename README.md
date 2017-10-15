@@ -1,5 +1,5 @@
 # Language Detector
-Detect which language it is from speech (Chinese or English).
+Detect which language it is from speech (Chinese or English). For more information, check out the blog post [here](https://stlong0521.github.io/20171015%20-%20Language%20Detection.html).
 
 # Requirements
 * Python2.7
@@ -9,13 +9,13 @@ Detect which language it is from speech (Chinese or English).
 * Tensorflow (train neural network models): managed by uranium, no need to install manually
 
 # Data & Results
-* Raw data: 635 minutes of Chinese interviews from Luyu Official (i.e., Lu Yu You Yue), and 534 minutes of English interviews from Ellen Show, both on Youtube
+* Raw data: 635 minutes of Chinese interviews from Luyu Official (i.e., Lu Yu You Yue), and 534 minutes of English interviews from Ellen Show, both on YouTube
 * Processed data: 38122 spectrogram images for Chinese interviews, and 32079 spectrogram images for English interviews (one image for one second of speech)
-* Train/test data split: processed data are mixed, shuffled and split into train/test sets by 80%/20%
+* Train/test data split: processed data are labelled, mixed, shuffled and split into train/test sets by 80%/20%
 * Evaluation accuracy: 92.7% (on test set) achieved from Berlinnet neural network model trained by 19300 iterations
 
 # How to Use
-1. Download raw data from Youtube; the downloaded data will be under `./data/raw/`
+1. Download raw data from YouTube; the downloaded data will be under `./data/raw/`
 
    ```./uranium download```
    > You can customize your download list in `./language_detection/data_acquisition/sources.yml`
