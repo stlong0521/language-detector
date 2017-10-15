@@ -11,8 +11,8 @@ INPUT_SHAPE : [39, 120, 1] # Input Image shape
 OUTPUT_SHAPE : [2] # Total classes as vector
 
 # Datasets
-TRAINING_DATA : "/home/tianlong/mygit/language-detector/data/labelled/train.csv"
-TEST_DATA : "/home/tianlong/mygit/language-detector/data/labelled/test.csv"
+TRAINING_DATA : "data/labelled/train.csv"
+TEST_DATA : "data/labelled/test.csv"
 SHUFFLE : True
 
 # Logging
