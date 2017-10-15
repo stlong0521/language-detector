@@ -31,6 +31,11 @@ def train(build):
         sys.executable, "language_detector/modeling/train.py",
         "--config", "language_detector/modeling/config.yaml"])
 
+def visualize(build):
+    build.packages.install("tensorflow", version="==1.3.0")
+    build.packages.install("pillow", version="==4.3.0")
+    build.executables.run(["tensorboard", "--logdir=logs"])
+
 def evaluate(build):
     build.packages.install("tensorflow", version="==1.3.0")
     build.packages.install("pillow", version="==4.3.0")

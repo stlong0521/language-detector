@@ -31,6 +31,8 @@ Detect which language it is from speech (Chinese or English).
 
    > Depending on the desired number of training iterations and your hardware, it could take hours to days
 
+   > To visualize the model and training progress via TensorBoard, run `./uranium visualize` and go to `localhost:6006`
+
 4. Evaluate the trained model on the test data set
 
    ```./uranium evaluate```
